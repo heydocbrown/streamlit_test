@@ -18,6 +18,10 @@ def offset_value_per_cow(offset_price, mitigation_pct, baseline_CH4 = 300, GWP=2
 
 gwp = 28
 
+st.subheader('Enteric Methane Reducing Product Value Calculator')
+st.write('If using mobile, click > symbol to change settings')
+st.write('')
+
 with st.sidebar:    
     xaxis= st.selectbox("X-Axis Variable", 
         ['Methane Reduction (%)', "Carbon Offset Price"])
@@ -115,3 +119,6 @@ if xaxis == "Methane Reduction (%)":
                             y=['Offset Value ($)',
                             'Added Production Value ($)',
                             'Total Value ($)'], y_label = 'Value ($)')
+
+
+st.write('[tbd] write discussion of plot here')
