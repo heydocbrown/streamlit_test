@@ -129,7 +129,7 @@ st.write('''
          inconsistent today. And even then there'd be little profit for the farmer at cost of 
          \$0.50 per per day and only an actual loss at \$1.00 per day. If a farmer could get a premium 
          price on their milk, that would support these costs. Even a 10 cent premium per liter would 
-         be worth $2.50 per cow per day for an average US dairy cow..   
+         be worth $2.50 per cow per day for an average US dairy cow.   
          ''')  
 
 st.subheader('How to use this calculator.')
