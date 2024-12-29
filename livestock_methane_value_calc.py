@@ -111,7 +111,7 @@ chart = alt.Chart(df.reset_index()).transform_fold(
     as_=['Metric', 'Value']
 ).mark_line().encode(
     x=alt.X('index:Q', title=xaxis, axis=alt_ax),
-    y=alt.Y('Value:Q', title='Value ($) ' + interval, axis=alt_ax),
+    y=alt.Y('Value:Q', title='Value ($) per cow ' + interval, axis=alt_ax),
     color=alt.Color('Metric:N', title='Metrics',
                     legend=alt.Legend(orient='top-left', title='Metrics'))
 ).properties(
