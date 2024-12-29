@@ -60,8 +60,8 @@ with st.sidebar:
     xaxis = st.selectbox("X-Axis Variable", ['Methane Reduction (%)', 
                                              "Carbon Offset Price ($ per ton CO2)"])
 
-    mitigation_pct = st.number_input(label='Methane Reduction (%)', value=25) if xaxis != 'Methane Reduction (%)' else None
-    offset_price = st.number_input(label='Price of Carbon ($/tCO2)', value=40) if xaxis != "Carbon Offset Price" else None
+    mitigation_pct = st.number_input(label='Methane Reduction (%)', value=25) if xaxis != 'Methane Reduction (%)' else 25
+    offset_price = st.number_input(label='Price of Carbon ($/tCO2)', value=40) if xaxis != "Carbon Offset Price ($ per ton CO2)" else 25
 
     interval = st.radio(label='Daily or Annual Value', options=['per day', 'per year'])
 
@@ -101,12 +101,17 @@ df = pd.DataFrame(results)
 y_columns = ['Offset Value ($)'] if not q_prod else ['Offset Value ($)', 'Added Production Value ($)', 'Total Value ($)']
  
 
+if xaxis == 'Carbon Offset Price':
+    alt_ax = alt.Axis(format='$,.2f')
+else:
+    alt_ax=alt.Axis()
+
 chart = alt.Chart(df.reset_index()).transform_fold(
     y_columns, 
     as_=['Metric', 'Value']
 ).mark_line().encode(
-    x=alt.X('index:Q', title=xaxis),
-    y=alt.Y('Value:Q', title='Value ($) ' + interval),
+    x=alt.X('index:Q', title=xaxis, axis=alt_ax),
+    y=alt.Y('Value:Q', title='Value ($) ' + interval, axis=alt_ax),
     color=alt.Color('Metric:N', title='Metrics',
                     legend=alt.Legend(orient='top-left', title='Metrics'))
 ).properties(
